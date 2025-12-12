@@ -10,6 +10,7 @@ export class ReservationService {
   constructor() {
     const storedReservations = localStorage.getItem('reservations');
     this.reservations = storedReservations ? JSON.parse(storedReservations) : [];
+    console.log(this.reservations);
 
   }
 
@@ -22,20 +23,24 @@ export class ReservationService {
   }
 
   addReservation(reservation: Reservation): void {
+    reservation.id = Date.now().toString();
     this.reservations.push(reservation);
     localStorage.setItem('reservations', JSON.stringify(this.reservations));
+    console.log(this.reservations);
   }
 
   deleteReservation(id: string): void {
     let index = this.reservations.findIndex(reservation => reservation.id === id);
     this.reservations.splice(index, 1);
     localStorage.setItem('reservations', JSON.stringify(this.reservations));
+    console.log(this.reservations);
   }
 
-  updateReservation(updatedReservation: Reservation): void {
-    let index = this.reservations.findIndex(reservation => reservation.id === updatedReservation.id);
+  updateReservation(id: string, updatedReservation: Reservation): void {
+    let index = this.reservations.findIndex(reservation => reservation.id === id);
     this.reservations[index] = updatedReservation;
     localStorage.setItem('reservations', JSON.stringify(this.reservations));
+    console.log(this.reservations);
   }
 
 
