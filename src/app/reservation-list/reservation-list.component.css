@@ -1,0 +1,36 @@
+.reservation-list-container {
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+.reservation-list-container mat-card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.reservation-table {
+    width: 100%;
+}
+
+.no-reservations {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+.no-reservations mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    color: #ccc;
+}
+
+.no-reservations p {
+    margin: 16px 0;
+    font-size: 18px;
+}
+
+.no-reservations button mat-icon {
+    margin-right: 8px;
+}

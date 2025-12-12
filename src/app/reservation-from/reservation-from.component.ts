@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ReservationFromComponent implements OnInit {
 
   reservationForm: FormGroup = new FormGroup({});
+  isEditMode: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private reservationService: ReservationService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -24,6 +25,7 @@ export class ReservationFromComponent implements OnInit {
     });
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     if (id) {
+      this.isEditMode = true;
       let reservation = this.reservationService.getReservation(id);
       if (reservation) { this.reservationForm.patchValue(reservation) };
     }

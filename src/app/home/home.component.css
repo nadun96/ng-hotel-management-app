@@ -1,0 +1,28 @@
+.welcome-card {
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.welcome-card mat-card-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.welcome-card mat-card-content {
+    padding: 20px 0;
+    color: #666;
+}
+
+.welcome-card mat-card-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 16px;
+}
+
+.welcome-card button mat-icon {
+    margin-right: 8px;
+}

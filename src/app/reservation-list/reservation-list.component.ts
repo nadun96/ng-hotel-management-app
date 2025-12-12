@@ -9,6 +9,7 @@ import { Reservation } from '../models/reservation';
 })
 export class ReservationListComponent implements OnInit {
   reservations: Reservation[] = [];
+  displayedColumns: string[] = ['guestName', 'roomNumber', 'checkInDate', 'checkOutDate', 'guestEmail', 'actions'];
 
   constructor(private reservationService: ReservationService) {
     this.reservations = localStorage.getItem('reservations') ? JSON.parse(localStorage.getItem('reservations')!) : [];

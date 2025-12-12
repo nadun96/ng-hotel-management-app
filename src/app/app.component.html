@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+    <span>Hotel Management App</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/">Home</button>
+    <button mat-button routerLink="/list">Reservations</button>
+    <button mat-button routerLink="/new">New Booking</button>
+</mat-toolbar>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

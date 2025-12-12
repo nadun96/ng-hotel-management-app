@@ -1,0 +1,41 @@
+.form-container {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.form-container mat-card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 16px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.date-row {
+    display: flex;
+    gap: 16px;
+}
+
+.date-row mat-form-field {
+    flex: 1;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.form-actions button mat-icon {
+    margin-right: 8px;
+}

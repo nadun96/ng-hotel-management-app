@@ -1,39 +1,82 @@
-<app-home></app-home>
-<form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
-    <div>
-        <label for="checkInDate">Check In Date:</label>
-        <input type="date" formControlName="checkInDate" id="checkInDate">
-        <div *ngIf="reservationForm.get('checkInDate')?.invalid && reservationForm.get('checkInDate')?.touched">
-            check In Date is required.
-        </div>
-    </div>
-    <div>
-        <label for="checkOutDate">Check Out Date:</label>
-        <input type="date" formControlName="checkOutDate" id="checkOutDate">
-        <div *ngIf="reservationForm.get('checkOutDate')?.invalid && reservationForm.get('checkOutDate')?.touched">
-            Check Out Date is required.
-        </div>
-    </div>
-    <div>
-        <label for="guestName">Guest Name:</label>
-        <input type="text" formControlName="guestName" id="guestName">
-        <div *ngIf="reservationForm.get('guestName')?.invalid && reservationForm.get('guestName')?.touched">
-            Guest Name is required.
-        </div>
-    </div>
-    <div>
-        <label for="guestEmail">Guest Email:</label>
-        <input type="email" formControlName="guestEmail" id="guestEmail">
-        <div *ngIf="reservationForm.get('guestEmail')?.invalid && reservationForm.get('guestEmail')?.touched">
-            Guest Email is required.
-        </div>
-    </div>
-    <div>
-        <label for="roomNumber">Room Number:</label>
-        <input type="number" formControlName="roomNumber" id="roomNumber" min="1">
-        <div *ngIf="reservationForm.get('roomNumber')?.invalid && reservationForm.get('roomNumber')?.touched">
-            Room Number is required and must be greater than 0.
-        </div>
-    </div>
-    <button type="submit" [disabled]="reservationForm.invalid">Submit</button>
-</form>
+<div class="form-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                <mat-icon>event_available</mat-icon>
+                {{ isEditMode ? 'Edit Reservation' : 'New Reservation' }}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Guest Name</mat-label>
+                    <input matInput formControlName="guestName" placeholder="Enter guest name">
+                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-error *ngIf="reservationForm.get('guestName')?.hasError('required')">
+                        Guest Name is required
+                    </mat-error>
+                    <mat-error *ngIf="reservationForm.get('guestName')?.hasError('minlength')">
+                        Guest Name must be at least 3 characters
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Guest Email</mat-label>
+                    <input matInput formControlName="guestEmail" placeholder="Enter guest email" type="email">
+                    <mat-icon matSuffix>email</mat-icon>
+                    <mat-error *ngIf="reservationForm.get('guestEmail')?.hasError('required')">
+                        Guest Email is required
+                    </mat-error>
+                    <mat-error *ngIf="reservationForm.get('guestEmail')?.hasError('email')">
+                        Please enter a valid email address
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="date-row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Check-in Date</mat-label>
+                        <input matInput [matDatepicker]="checkInPicker" formControlName="checkInDate">
+                        <mat-datepicker-toggle matIconSuffix [for]="checkInPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #checkInPicker></mat-datepicker>
+                        <mat-error *ngIf="reservationForm.get('checkInDate')?.hasError('required')">
+                            Check-in Date is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Check-out Date</mat-label>
+                        <input matInput [matDatepicker]="checkOutPicker" formControlName="checkOutDate">
+                        <mat-datepicker-toggle matIconSuffix [for]="checkOutPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #checkOutPicker></mat-datepicker>
+                        <mat-error *ngIf="reservationForm.get('checkOutDate')?.hasError('required')">
+                            Check-out Date is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Room Number</mat-label>
+                    <input matInput formControlName="roomNumber" type="number" min="1" placeholder="Enter room number">
+                    <mat-icon matSuffix>meeting_room</mat-icon>
+                    <mat-error *ngIf="reservationForm.get('roomNumber')?.hasError('required')">
+                        Room Number is required
+                    </mat-error>
+                    <mat-error *ngIf="reservationForm.get('roomNumber')?.hasError('min')">
+                        Room Number must be at least 1
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="form-actions">
+                    <button mat-button type="button" routerLink="/list">
+                        <mat-icon>arrow_back</mat-icon>
+                        Cancel
+                    </button>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="reservationForm.invalid">
+                        <mat-icon>save</mat-icon>
+                        {{ isEditMode ? 'Update' : 'Submit' }}
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

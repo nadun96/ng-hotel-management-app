@@ -1,5 +1,21 @@
-<div>
-    <h2>Welcome to the Hotel Management App</h2>
-    <button [routerLink]="['/new']">Make a Reservation</button>
-    <button [routerLink]="['/list']">View Reservations</button>
-</div>
+<mat-card class="welcome-card">
+    <mat-card-header>
+        <mat-card-title>
+            <mat-icon>hotel</mat-icon>
+            Welcome to the Hotel Management App
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>Manage your hotel reservations with ease. Create, view, edit, and delete reservations all in one place.</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" [routerLink]="['/new']">
+            <mat-icon>add</mat-icon>
+            Make a Reservation
+        </button>
+        <button mat-raised-button color="accent" [routerLink]="['/list']">
+            <mat-icon>list</mat-icon>
+            View Reservations
+        </button>
+    </mat-card-actions>
+</mat-card>
